@@ -593,46 +593,48 @@ def TitleScreen():
 
         pygame.display.update()     
 
-B = Board()
-RUN = True
-while RUN:
-    B.ships = []
-    B.explosions = []
-    B.projectiles = []
-    B.rounddelay = 300
-    B.NextRound = False
-    TitleScreen()
-    ROUND = True
-    while ROUND:
-        pygame.time.delay(1)
-        window.fill((32,31,56))
-        for S in B.ships:
-            if S.health > 0:
-                S.Input()
-            else:
-                S.Dead()
-        B.Show()
 
-        for i in B.projectiles:
-            i.Calculate()
-            i.Impact()
-        for S in B.ships:
-            S.Calculate()
+if __name__ == '__main__':
+    B = Board()
+    RUN = True
+    while RUN:
+        B.ships = []
+        B.explosions = []
+        B.projectiles = []
+        B.rounddelay = 300
+        B.NextRound = False
+        TitleScreen()
+        ROUND = True
+        while ROUND:
+            pygame.time.delay(1)
+            window.fill((32,31,56))
+            for S in B.ships:
+                if S.health > 0:
+                    S.Input()
+                else:
+                    S.Dead()
+            B.Show()
 
-        for i in B.particles:
-            i.Move()
-        for i in B.projectiles:
-            i.Show()
-        for S in B.ships:
-            S.Show()
-        for i in B.explosions:
-            i.Show()
+            for i in B.projectiles:
+                i.Calculate()
+                i.Impact()
+            for S in B.ships:
+                S.Calculate()
 
-        for i in B.projectiles:
-            i.Reset()
-        for S in B.ships:
-            S.Reset()
+            for i in B.particles:
+                i.Move()
+            for i in B.projectiles:
+                i.Show()
+            for S in B.ships:
+                S.Show()
+            for i in B.explosions:
+                i.Show()
 
-        
-        ROUND = B.Handling(ROUND)
-        pygame.display.update()
+            for i in B.projectiles:
+                i.Reset()
+            for S in B.ships:
+                S.Reset()
+
+            
+            ROUND = B.Handling(ROUND)
+            pygame.display.update()
